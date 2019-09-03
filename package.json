@@ -1,11 +1,11 @@
 {
-  "name": "vuepress-theme-thindark",
-  "version": "1.0.1",
-  "description": "A dark theme for VuePress.",
+  "name": "vuepress-theme-juuust",
+  "version": "1.0.2",
+  "description": "A compact theme for VuePress.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lisniuse/vuepress-theme-thindark.git"
+    "url": "git+https://github.com/leadream/vuepress-theme-juuust.git"
   },
   "keywords": [
     "vuepress",
@@ -13,12 +13,12 @@
     "documentation",
     "site-generator"
   ],
-  "author": "Zhi Bing",
+  "author": "leadream",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lisniuse/vuepress-theme-thindark/issues"
+    "url": "https://github.com/leadream/vuepress-theme-juuust/issues"
   },
-  "homepage": "https://github.com/lisniuse/vuepress-theme-thindark#readme",
+  "homepage": "https://github.com/leadream/vuepress-theme-juuust#readme",
   "dependencies": {
     "@vuepress/plugin-active-header-links": "^1.0.2",
     "@vuepress/plugin-nprogress": "^1.0.2",
