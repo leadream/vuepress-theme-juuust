@@ -84,3 +84,9 @@ function resolveOpenGroupIndex (route, items) {
   return -1
 }
 </script>
+
+<style lang="stylus">
+.sidebar-group
+  a.sidebar-link
+    padding 0.25rem 0.8rem
+</style>

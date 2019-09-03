@@ -6,6 +6,7 @@
       <router-link
         :to="$localePath"
         class="home-link"
+        v-show="!isSearching"
       >
         <img
           class="logo"
@@ -27,12 +28,13 @@
           'max-width': linksWrapMaxWidth + 'px'
         } : {}"
       >
-        <NavLinks class="can-hide"/>
+        <span class="stretched-box"/>
         <AlgoliaSearchBox
           v-if="isAlgoliaSearch"
           :options="algolia"
         />
-        <SearchBox v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"/>
+        <SearchBox ref="searchBox" v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"/>
+        <NavLinks class="can-hide"/>
       </div>
     </div>
   </header>
@@ -49,7 +51,8 @@ export default {
 
   data () {
     return {
-      linksWrapMaxWidth: null
+      linksWrapMaxWidth: null,
+      isSearching: false
     }
   },
 
@@ -66,6 +69,12 @@ export default {
     }
     handleLinksWrapWidth()
     window.addEventListener('resize', handleLinksWrapWidth, false)
+    // hide logo when searching in mobile
+    this.$refs.searchBox.$watch('focused', focused => {
+      if (document.documentElement.clientWidth < MOBILE_DESKTOP_BREAKPOINT) {
+        this.isSearching = focused
+      }
+    })
   },
 
   computed: {
@@ -98,9 +107,8 @@ $headerBg = #282c34
   padding $navbar-vertical-padding $navbar-horizontal-padding
   line-height 2.5rem
   background-color $headerBg
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.50);
   .inner
-    max-width 1200px
+    max-width 1000px
     margin 0 auto
   .home-link
     display block
@@ -108,8 +116,7 @@ $headerBg = #282c34
   a, span, img
     display inline-block
   .logo
-    height $navbarHeight - 1.4rem
-    min-width $navbarHeight - 1.4rem
+    height 100%
     margin-right 0.8rem
     vertical-align top
   .site-name
@@ -126,9 +133,15 @@ $headerBg = #282c34
     position relative
     display flex
     color $headerTextColor
+    .stretched-box
+      flex 1
     .search-box
       flex: 0 0 auto
       vertical-align top
+      input
+        color #CCC
+        border 1px solid #282c34
+        background-color #1d2025
 
 @media (max-width: $MQMobile)
   .navbar
